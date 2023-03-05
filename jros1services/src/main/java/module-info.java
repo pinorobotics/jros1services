@@ -2,7 +2,7 @@
  * Java module which allows to interact with <a href="http://wiki.ros.org/Services">ROS1 (Robot
  * Operating System) Services</a>.
  *
- * <p>For usage examples see <a href="http://pinoweb.freetzi.com/jros1services">Documentation</a>
+ * <p>For usage examples see <a href="http://pinoweb.freetzi.com/jrosservices">Documentation</a>
  *
  * @see <a href="https://github.com/pinorobotics/jros1services">GitHub repository</a>
  * @see <a href="https://github.com/pinorobotics/jros1services/releases">Download</a>

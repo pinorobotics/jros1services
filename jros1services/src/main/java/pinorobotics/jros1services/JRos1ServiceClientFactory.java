@@ -35,9 +35,9 @@ public class JRos1ServiceClientFactory {
     /**
      * Create client for ROS1 Services
      *
-     * @param client ROS client
+     * @param client ROS1 client
      * @param serviceDefinition message type definitions for an service
-     * @param serviceName name of the service which will execute the requests
+     * @param serviceName name of the ROS1 service which will be executing the requests
      * @param <R> request message type
      * @param <A> response message type
      */

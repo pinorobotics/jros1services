@@ -37,6 +37,9 @@ import pinorobotics.jrosservices.exceptions.JRosServiceClientException;
 import pinorobotics.jrosservices.msgs.ServiceDefinition;
 
 /**
+ * Client which allows to interact with ROS1 Services.
+ *
+ * @see <a href="http://wiki.ros.org/Services">ROS1 Services</a>
  * @author lambdaprime intid@protonmail.com
  */
 public class JRos1ServiceClient<R extends Message, A extends Message> extends LazyService
@@ -55,7 +58,7 @@ public class JRos1ServiceClient<R extends Message, A extends Message> extends La
      *
      * @param client ROS1 client
      * @param serviceDefinition message type definitions for a service
-     * @param serviceName name of the service which will execute the requests
+     * @param serviceName name of the ROS1 service which will be executing the requests
      */
     JRos1ServiceClient(
             JRos1Client client,
@@ -71,6 +74,7 @@ public class JRos1ServiceClient<R extends Message, A extends Message> extends La
         logger = XLogger.getLogger(getClass(), tracingToken);
     }
 
+    /** {@inheritDoc} */
     @Override
     public CompletableFuture<A> sendRequestAsync(R requestMessage) {
         Preconditions.notNull(requestMessage, "requestMessage is null");
@@ -79,6 +83,9 @@ public class JRos1ServiceClient<R extends Message, A extends Message> extends La
         return serviceNodeClient.sendRequest(requestMessage);
     }
 
+    /**
+     * @hidden exclude from javadoc
+     */
     @Override
     protected void onStart() {
         logger.entering("Starting service client for " + serviceName);
@@ -115,6 +122,9 @@ public class JRos1ServiceClient<R extends Message, A extends Message> extends La
         }
     }
 
+    /**
+     * @hidden exclude from javadoc
+     */
     @Override
     protected void onClose() {
         logger.entering("Closing service client for " + serviceName);
