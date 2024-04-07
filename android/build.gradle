@@ -1,0 +1,52 @@
+plugins {
+  id 'com.android.library' version '8.2.0' apply false
+}
+
+apply plugin: 'com.android.library'
+
+def androidSdkVersion = 34
+def javaVersion = 17
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(javaVersion)
+  }
+}
+
+dependencies {
+  api "io.github.lambdaprime:id.xfunction:25.0:android@aar"
+  api "io.github.pinorobotics:jrosservices:3.0"
+  api "io.github.lambdaprime:jros1client:7.0"
+  api "io.github.lambdaprime:jros1messages:3.0"
+}
+
+android {
+  namespace "pinorobotics.jros1services"
+  compileSdk androidSdkVersion
+  compileOptions {
+    sourceCompatibility javaVersion
+  }
+  lintOptions {
+    abortOnError false
+  }
+  defaultConfig {
+    targetSdkVersion androidSdkVersion
+    minSdkVersion androidSdkVersion
+  }
+}
+
+// Android build complains on "requires java.logging;" inside module-info.java
+// for no obvious reason because JUL is part of Android API (see https://developer.android.com/reference/java/util/logging/package-summary)
+// It is not possible to exclude module-info through srcDirs:
+// https://discuss.gradle.org/t/how-to-exclude-module-info-java-in-gradle-7/42816
+// instead we copy sources except module-info to separate folder
+task copySources(type: Copy) {
+  from "../jros1services/src/main/java"
+  into "src/main/java"
+  exclude "**/module-info.java"
+}
+task cleanSource(type: Delete) {
+  delete "src/main/java"
+}
+preBuild.dependsOn copySources
+clean.dependsOn cleanSource

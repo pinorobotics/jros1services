@@ -5,7 +5,8 @@
  * <p>For usage examples see <a href="http://pinoweb.freetzi.com/jrosservices">Documentation</a>
  *
  * @see <a href="https://github.com/pinorobotics/jros1services">GitHub repository</a>
- * @see <a href="https://github.com/pinorobotics/jros1services/releases">Download</a>
+ * @see <a
+ *     href="https://github.com/pinorobotics/jros1services/blob/main/jros1services/release/CHANGELOG.md">Releases</a>
  * @see <a href="http://wiki.ros.org/Services">ROS1 Services</a>
  * @author lambdaprime intid@protonmail.com
  */
