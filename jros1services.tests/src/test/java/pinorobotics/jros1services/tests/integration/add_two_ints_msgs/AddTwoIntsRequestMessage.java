@@ -29,6 +29,7 @@ import java.util.Objects;
 @MessageMetadata(
         name = AddTwoIntsRequestMessage.NAME,
         interfaceType = RosInterfaceType.SERVICE,
+        fields = {"a", "b"},
         md5sum = "6a2e34150c00229791cc89ff309fff21")
 public class AddTwoIntsRequestMessage implements Message {
 

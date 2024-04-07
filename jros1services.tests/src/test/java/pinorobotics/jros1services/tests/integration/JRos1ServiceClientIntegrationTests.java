@@ -54,7 +54,7 @@ public class JRos1ServiceClientIntegrationTests {
     public void setup() throws MalformedURLException {
         var exec = new XExec("ws/devel/lib/add_two_ints_server/add_two_ints_server_node");
         exec.getProcessBuilder().inheritIO();
-        service = exec.start().forwardOutputAsync();
+        service = exec.start().forwardOutputAsync(false);
         client = new JRos1ClientFactory().createClient();
         serviceClient =
                 new JRos1ServiceClientFactory()
