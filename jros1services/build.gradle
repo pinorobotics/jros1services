@@ -4,13 +4,18 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath "io.github.lambdaprime:id.xfunction:14.0"
+    classpath "io.github.lambdaprime:id.xfunction:23.0"
   }
 }
 
 plugins {
   id 'com.diffplug.spotless'
+  // only if you build Java library
   id 'java-library'
+}
+
+boolean isReleaseBuild() {
+  return version != null && version.matches("\\d+[.\\d+]*");
 }
 
 apply plugin : 'eclipse'
@@ -86,8 +91,8 @@ clean.dependsOn cleanRelease
 classes.dependsOn spotlessApply
 
 task updateVersion() {
-  // update version only when it is specified and non SNAPSHOT version is built
-  if (version || version.contains("SNAPSHOT")) return;
+  // update version only during release build
+  if (!isReleaseBuild()) return;
   println "Updating version to " + version
   new id.xfunction.text.Substitutor()
     .withRegexpSupport()
@@ -159,7 +164,7 @@ if (project.hasProperty('publish')) {
         }
         url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
       }
-    }    
+    }
   }
 
   if (project.hasProperty('signing.secretKeyRingFile')) {
