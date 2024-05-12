@@ -10,13 +10,14 @@ eclipse.classpath.file {
 }
 
 dependencies {
-  testImplementation project(':jros1services')
-  
+  testImplementation project(":${zzName}")
+  zzTestDependencies.split(',').findAll{ !it.isBlank() }.each { testImplementation it }
+
   def junitVersion = "5.8.1"
   testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
   testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
   testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-  testRuntimeOnly 'org.junit.platform:junit-platform-commons:1.7.0'
+  testRuntimeOnly "org.junit.platform:junit-platform-commons:1.7.0"
 }
 
 sourceSets {
@@ -46,6 +47,7 @@ compileTestJava {
 
 test {
   useJUnitPlatform()
+
   testLogging {
     events "started", "failed"
   }
