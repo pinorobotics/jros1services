@@ -23,7 +23,7 @@ import id.jros1client.ros.transport.TcpRosClientConnector;
 import id.jros1client.ros.transport.io.ConnectionHeaderWriter;
 import id.jros1client.ros.transport.io.MessagePacketReader;
 import id.jros1client.ros.transport.io.MessagePacketWriter;
-import id.jros1messages.MessageSerializationUtils;
+import id.jros1messages.Ros1MessageSerializationUtils;
 import id.jrosclient.utils.TextUtils;
 import id.jrosmessages.Message;
 import id.jrosmessages.MessageMetadataAccessor;
@@ -54,8 +54,8 @@ import pinorobotics.jrosservices.msgs.ServiceDefinition;
 public class ServiceTcpRosClient<R extends Message, A extends Message>
         implements TcpRosClientConnector.Processor<ServiceConnectionHeader>, AutoCloseable {
 
-    private static final MessageSerializationUtils SERIALIZATION_UTILS =
-            new MessageSerializationUtils();
+    private static final Ros1MessageSerializationUtils SERIALIZATION_UTILS =
+            new Ros1MessageSerializationUtils();
 
     private class PendingResult {
         private R request;
