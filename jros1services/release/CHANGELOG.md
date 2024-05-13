@@ -1,3 +1,10 @@
+# Version 3
+
+- Updating dependencies
+- Updating gradle files
+
+[jros1services-v3.0.zip](https://github.com/pinorobotics/jros1services/raw/main/jros1services/release/jros1services-v3.0.zip)
+
 # Version 2
 
 - Updating to jros1client v7
